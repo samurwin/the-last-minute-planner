@@ -12,20 +12,30 @@
 </head>
 <body>
     <header>
-            <h1>The Last Minute Planner</h1>
-            <h2>Search For Events Near You!</h2>
+            <h2>The Last Minute Planner</h2>
+            <h4>Search For Events Near You!</h4>
     
     <div class="" id="">
-        <p>
+        <p class="h6">
             Use the form below to find events in specified City. Find events for today pr for a day in future! <br> 
             Use the weather forecast to decide weather an indoor or outdoor event is the best choice.       
         </p>
     </div>
+    <div>
+        <form>
+            <label for="city-name">City</label>
+            <input type="text" name="city-name" placeholder="Enter City Name">
+            <label for="date">Date</label>
+            <input type="text" name="date" placeholder="MM/DD/YYYY">
+            <button type="submit" id="searchBtn"></button>
+        </form>
+    </div>
+
     <main>
         <div class="container" id="container">
             <div class="row" id="">
                 <div class="col-9" id="search-result">
-                    <h2>Events in City Name for </h2>
+                    <h2>Events in  </h2>
                 </div>
                 <div class="col-3 ">
                     <div class="row">
@@ -42,7 +52,8 @@
             </div>
         </div>
     </main>
-</header>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
