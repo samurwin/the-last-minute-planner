@@ -1,10 +1,14 @@
+// any global variables go here
+//
+//
+
 // event listener for the searchBtn
 // a function to handle all the calls made after the searchBtn is clicked
     // call a function displayTitle(date, cityName)
     // call the ticket master api using the date and cityName (fetch)
         // then call displayEvents(data)
     // call the weather api using the date and cityName (fetch)
-        // then call displayWeather(data)
+        // then call displayWeather(data, cityName)
 
 // create a function to display the title
     // use querySelector to get the span element 
@@ -48,10 +52,10 @@
     // create a variable for the #forecast container
 
     // create a <h4> for the City Name
-    // text will equal data.city
+    // text will equal cityName
     // create an <img> for the weather condidtions (icon)
     // attr src="url"
-    // attr alt="data.weather-condition"
+    // attr alt="data.main"
     // add classes
     // create a <p></p> for the temperature
     // text will equal data.temp
@@ -59,9 +63,12 @@
     // append cityName, icon, temp to #forecast container
 
 // event listener for #results container for element with the class .addToFavourites
-// a function to add the event's id to localStorage
-    // create an empty array to hold events
+// a function to add the event's info to localStorage
+    // create variable for the eventName
+    // create variable for the startTime
+    // create an empty array to hold events (as a global variable at the top of the code)
     // create an object to hold a event {name: eventName, time: startTime}
+    // add the event object to the empty array
     // use localStorage.setItem to save the events array to localStorage
     // call function displayFavourites()
 
@@ -81,7 +88,7 @@
 
 // add event listener for .clearLink
 // a function to clear the favourites card and clear the local storage
-    // create a variable for #favourite-events container
+    // create a variable for #favourite-events container using query selector
     // clear innerHTML of the #favourite-events container
 
     // localStorage.clear() - to clear the favourite events from the local storage
