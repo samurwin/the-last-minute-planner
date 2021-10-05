@@ -20,18 +20,19 @@
             Use the form below to find events in specified City. Find events for today pr for a day in future! <br>
             Use the weather forecast to decide weather an indoor or outdoor event is the best choice.
         </p>
+        <div>
+            <form>
+                <div class="form-inline m-3 align-items-center justify-content-start">
+                    <label for="city-name" class="p-2 form-label">City</label>
+                    <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 rounded">
+                    <label for="date" class="p-2 form-label">Date</label>
+                    <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2">
+                    <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
+                </div>
+            </form>
+        </div>
     </header>
-    <div>
-        <form>
-            <div class="form-inline m-3 align-items-center justify-content-start">
-                <label for="city-name" class="p-2 form-label">City</label>
-                <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 rounded">
-                <label for="date" class="p-2 form-label">Date</label>
-                <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2">
-                <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
-            </div>
-        </form>
-    </div>
+    
 
 
     <main class="container col-12" id="container">
