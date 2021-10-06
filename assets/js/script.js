@@ -1,4 +1,6 @@
 // any global variables go here
+var favouriteEvents = [];
+Array.push('')
 //
 //
 
@@ -95,11 +97,16 @@ $('#searchBtn').on('click', function(event) {
     // append cityName, icon, temp to #forecast container
 
 // event listener for #results container for element with the class .addToFavourites
+document.querySelector('#result').addEventListener('submit', )
 // a function to add the event's info to localStorage
+
     // create variable for the eventName
+   
     // create variable for the startTime
+   
     // create an empty array to hold events (as a global variable at the top of the code)
     // create an object to hold a event {name: eventName, time: startTime}
+    
     // add the event object to the empty array
     // use localStorage.setItem to save the events array to localStorage
     // call function displayFavourites()
