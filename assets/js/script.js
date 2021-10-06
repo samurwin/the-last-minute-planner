@@ -38,7 +38,7 @@ $('#searchBtn').on('click', function(event) {
         })
         // then call displayWeather(data)
         .then(function(weather) {
-            displayWeather(weather);
+            // displayWeather(weather);
         })
     })
 });
