@@ -2,13 +2,26 @@
 //
 //
 
+// date picker
+$('#pick-date').datepicker( {
+    minDate: 1
+});
 // event listener for the searchBtn
 // a function to handle all the calls made after the searchBtn is clicked
+$('#searchBtn').on('click', function(event) {
+    event.preventDefault();
+    var cityName = document.querySelector("input[name='city-name']").value;
+    var date = document.querySelector("input[name='date']").value;
+    console.log(cityName, date);
     // call a function displayTitle(date, cityName)
+    displayTitle(date, cityName);
     // call the ticket master api using the date and cityName (fetch)
+    
         // then call displayEvents(data)
     // call the weather api using the date and cityName (fetch)
         // then call displayWeather(data, cityName)
+})
+
 
 // create a function to display the title
     // use querySelector to get the span element 
