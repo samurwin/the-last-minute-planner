@@ -2,14 +2,46 @@
 //
 //
 
+// date picker
+$('#pick-date').datepicker( {
+    minDate: 0,
+});
+
 // event listener for the searchBtn
 // a function to handle all the calls made after the searchBtn is clicked
+$('#searchBtn').on('click', function(event) {
+    event.preventDefault();
+    var cityName = document.querySelector("input[name='city-name']").value;
+    var date = document.querySelector("input[name='date']").value;
+    console.log(cityName, date);
     // call a function displayTitle(date, cityName)
+    // displayTitle(date, cityName);
     // call the ticket master api using the date and cityName (fetch)
-        // then call displayEvents(data)
+    fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&date=' + date +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
+    .then(function(data) {
+        data.json().then(function(data) {
+            console.log(data);
+            // then call displayEvents(data)
+            // displayEvents(data);
+        })
+    });
     // call the weather api using the date and cityName (fetch)
-        // then call displayWeather(data, cityName)
-
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=460baac12caacdeca58e7bae8f1299bc')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(response) {
+        fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&date=' + date +'&units=metric&appid=460baac12caacdeca58e7bae8f1299bc')
+        .then(function(weather) {
+            console.log(weather.json());
+            return weather.json();
+        })
+        // then call displayWeather(data)
+        .then(function(weather) {
+            // displayWeather(weather);
+        })
+    })
+});
 // create a function to display the title
     // use querySelector to get the span element 
     // text of the span will equal the cityName + date
@@ -92,5 +124,3 @@
     // clear innerHTML of the #favourite-events container
 
     // localStorage.clear() - to clear the favourite events from the local storage
-
-
