@@ -12,6 +12,11 @@ function displayTitle(dt, city) {
     $('#event_name').text(city + " " + dt);
 }
 
+// Function to clear favorites
+$('#clear_fav').click(function() {
+    $('#favourite-events').text("");
+});
+
 // event listener for the searchBtn
 // a function to handle all the calls made after the searchBtn is clicked
 $('#searchBtn').on('click', function(event) {
