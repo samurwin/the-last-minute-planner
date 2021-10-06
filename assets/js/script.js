@@ -22,7 +22,7 @@ $('#searchBtn').on('click', function(event) {
         return data.json();
     })
     .then(function(data) {
-        createEvent(data)
+        displayEvents(data)
     });
     // call the weather api using the date and cityName (fetch)
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=460baac12caacdeca58e7bae8f1299bc')
@@ -41,6 +41,7 @@ $('#searchBtn').on('click', function(event) {
         })
     })
 });
+
 // create a function to display the title
     // use querySelector to get the span element 
     // text of the span will equal the cityName + date
@@ -51,14 +52,15 @@ var displayEvents = function(data) {
 
     // create a for loop to iterate through the events happening on that day
     for (i = 0; i < data._embedded.events.length; i ++) {
-       
+       createEvent(data, i);
     }
 
 };
 
-var createEvent = function(data) {
-    var currentEvent = data._embedded.events[0];
-    
+var createEvent = function(data, i) {
+    console.log(data, i);
+    var currentEvent = data._embedded.events[i];
+
     var eventContainerEl = $('<div></div>')
     .addClass('col-11 border border-dark p-2 m-2');
 
@@ -88,8 +90,7 @@ var createEvent = function(data) {
 
     $(eventContainerEl).append(eventTitleContainerEl, genreEl, venueEl, startTimeEl, moreInfoEl);
     $('#results').append(eventContainerEl);
-
-}
+};
 
 
 // create a function to display the weather
