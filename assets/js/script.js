@@ -22,6 +22,7 @@ $('#searchBtn').on('click', function(event) {
         return data.json();
     })
     .then(function(data) {
+        $('#results').empty();
         displayEvents(data)
     });
     // call the weather api using the date and cityName (fetch)
