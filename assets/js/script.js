@@ -8,13 +8,28 @@ $('#pick-date').datepicker( {
     minDate: 0,
 });
 
+// Function to display city name and date
+function displayTitle(dt, city) {
+    $('#event_name').text(city + " " + dt);
+}
+
+// Function to clear favorites
+$('#clear_fav').click(function() {
+    $('#favourite-events').html("");
+    localStorage.removeItem('favouriteEvents');
+});
+
 // event listener for the searchBtn
 // a function to handle all the calls made after the searchBtn is clicked
 $('#searchBtn').on('click', function(event) {
     event.preventDefault();
     var cityName = document.querySelector("input[name='city-name']").value;
     var date = document.querySelector("input[name='date']").value;
-    // displayTitle(date, cityName);
+
+    console.log(cityName, date);
+    // call a function displayTitle(date, cityName)
+    displayTitle(date, cityName);
+
     // call the ticket master api using the date and cityName (fetch)
     fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&date=' + date +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
     .then(function(data) {
