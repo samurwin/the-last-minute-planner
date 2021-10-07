@@ -15,7 +15,6 @@ $('#searchBtn').on('click', function(event) {
     var cityName = document.querySelector("input[name='city-name']").value;
     var date = document.querySelector("input[name='date']").value;
     console.log(cityName, date);
-    // call a function displayTitle(date, cityName)
     // displayTitle(date, cityName);
     // call the ticket master api using the date and cityName (fetch)
     fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&date=' + date +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
@@ -36,10 +35,9 @@ $('#searchBtn').on('click', function(event) {
         .then(function(weather) {
             return weather.json();
         })
-        // then call displayWeather(data)
         .then(function(weather) {
-            // displayWeather(weather);
-            console.log(weather);
+            $('#forecast').empty();
+            displayWeather(weather, cityName);
         })
     })
 });
@@ -60,7 +58,6 @@ var displayEvents = function(data) {
 };
 
 var createEvent = function(data, i) {
-    console.log(data, i);
     var currentEvent = data._embedded.events[i];
 
     var eventContainerEl = $('<div></div>')
@@ -73,7 +70,7 @@ var createEvent = function(data, i) {
     .addClass('m-0 event');
     var favouritesLinkEl = $('<button></button>')
     .text("Add To Favourites")
-    .addClass('text-decoration-underline save');
+    .addClass('btn btn-outline-secondary save');
 
     $(eventTitleContainerEl).append(eventTitleEl, favouritesLinkEl);
 
@@ -96,33 +93,21 @@ var createEvent = function(data, i) {
 
 
 // create a function to display the weather
-    // create a variable for the #forecast container
+var displayWeather = function(weather, cityName) {
+    var forecastContainerEl = document.getElementById('forecast');
 
-    // create a <h4> for the City Name
-    // text will equal cityName
-    // create an <img> for the weather condidtions (icon)
-    // attr src="url"
-    // attr alt="data.main"
-    // add classes
-    // create a <p></p> for the temperature
-    // text will equal data.temp
+    var cityEl = $('<h5></h5>')
+    .text(cityName)
+    .addClass('m-0')
+    var conditionsEl = $('<img>')
+    .attr('src', 'http://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
+    .attr('alt', weather.current.weather[0].main);
+    var tempEl = $('<p></p>')
+    .text('Temp: ' + weather.current.temp + '°C');
 
-    // append cityName, icon, temp to #forecast container
+    $(forecastContainerEl).append(cityEl, conditionsEl, tempEl);
+}
 
-// event listener for #results container for element with the class .addToFavourites
-
-
-
-
-    // create variable for the eventName
-   
-    // create variable for the startTime
-   
-    // create an empty array to hold events (as a global variable at the top of the code)
-    // create an object to hold a event {name: eventName, time: startTime}
-   
-     
-//document.querySelector('#favouritesLinkEl').addEventlistner('click', saveData);
 
 $('#results').on('click',".save", function(event){
     var eventName = $(this).parent().find('.event').text();
@@ -149,7 +134,7 @@ var createShowFavourites = function(i, toGetEventName) {
     var favouriteCardEl = $('<div></div>')
     .addClass('col-11 border border-dark p-2 m-2')
 
-    var eventNameEl = $('<h4></h4>')
+    var eventNameEl = $('<h6></h6>')
     .text(toGetEventName[i].name)
 
     var timeEl = $('<p></p>')
