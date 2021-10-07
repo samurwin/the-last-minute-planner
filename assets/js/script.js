@@ -1,4 +1,5 @@
 // any global variables go here
+favoutiteEvents = [];
 //
 //
 
@@ -55,7 +56,7 @@ var displayEvents = function(data) {
     for (i = 0; i < data._embedded.events.length; i ++) {
        createEvent(data, i);
     }
-
+    
 };
 
 var createEvent = function(data, i) {
@@ -63,16 +64,16 @@ var createEvent = function(data, i) {
     var currentEvent = data._embedded.events[i];
 
     var eventContainerEl = $('<div></div>')
-    .addClass('col-11 border border-dark p-2 m-2');
+    .addClass('col-11 border border-dark p-2 m-2 event-text');
 
     var eventTitleContainerEl = $('<div></div>')
     .addClass('d-flex flex-row align-items-center justify-content-between');
     var eventTitleEl = $('<h5></h5>')
     .text(currentEvent.name)
-    .addClass('m-0');
-    var favouritesLinkEl = $('<a></a>')
+    .addClass('m-0 event');
+    var favouritesLinkEl = $('<button></button>')
     .text("Add To Favourites")
-    .addClass('text-decoration-underline');
+    .addClass('text-decoration-underline save');
 
     $(eventTitleContainerEl).append(eventTitleEl, favouritesLinkEl);
 
@@ -84,7 +85,7 @@ var createEvent = function(data, i) {
     .addClass('m-0')
     var startTimeEl = $('<p></p>')
     .text(currentEvent.dates.start.localTime)
-    .addClass('font-weight-light m-0');
+    .addClass('font-weight-light m-0 time');
     var moreInfoEl = $('<a></a>')
     .text("More Info")
     .attr('href', currentEvent.url)
@@ -109,28 +110,54 @@ var createEvent = function(data, i) {
     // append cityName, icon, temp to #forecast container
 
 // event listener for #results container for element with the class .addToFavourites
-// a function to add the event's info to localStorage
+
+
+
+
     // create variable for the eventName
+   
     // create variable for the startTime
+   
     // create an empty array to hold events (as a global variable at the top of the code)
     // create an object to hold a event {name: eventName, time: startTime}
-    // add the event object to the empty array
-    // use localStorage.setItem to save the events array to localStorage
-    // call function displayFavourites()
+   
+     
+//document.querySelector('#favouritesLinkEl').addEventlistner('click', saveData);
 
-// create function to display favourites
-    // create a variable for #favourite-events container using query selector
-    // localStorage.getItem to get the events array of objects
-    // use a for loop to display all the favourite events
-        // create a <div></div> to hold the event
-        // add classes
-        // create a <h4></h4> for the event name
-        // text will equal events[i].name
-        // create a <p></p> for the start time
-        // text will equal events[i].time
+$('#results').on('click',".save", function(event){
+    var eventName = $(this).parent().find('.event').text();
+    var startTime = $(this).closest('.event-text').find('.time').text();
+    console.log(eventName);
+    console.log(startTime);
+    var saveData = [{name: eventName, time: startTime}];
+    
+    localStorage.setItem('favouriteEvents', JSON.stringify(saveData));
+    displayFavourites();
+})
 
-        // append name, time to the div
-        // append div to #favourite-events container
+var displayFavourites = function(){
+    var toGetEventName = JSON.parse( localStorage.getItem('favouriteEvents'))
+    console.log(toGetEventName); 
+            
+    for (i = 0; i < toGetEventName.length; i ++) {
+        createShowFavourites(i, toGetEventName);
+    }
+}
+
+var createShowFavourites = function(i, toGetEventName) {
+    console.log(i);
+    var favouriteCardEl = $('<div></div>')
+    .addClass('col-11 border border-dark p-2 m-2')
+
+    var eventNameEl = $('<h4></h4>')
+    .text(toGetEventName[i].name)
+
+    var timeEl = $('<p></p>')
+    .text(toGetEventName[i].time)
+    $(favouriteCardEl).append(eventNameEl, timeEl );
+    $('#favourite-events').append(favouriteCardEl);
+}
+displayFavourites();   
 
 // add event listener for .clearLink
 // a function to clear the favourites card and clear the local storage
@@ -138,3 +165,5 @@ var createEvent = function(data, i) {
     // clear innerHTML of the #favourite-events container
 
     // localStorage.clear() - to clear the favourite events from the local storage
+
+  
