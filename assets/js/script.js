@@ -14,7 +14,8 @@ function displayTitle(dt, city) {
 
 // Function to clear favorites
 $('#clear_fav').click(function() {
-    $('#favourite-events').text("");
+    $('#favourite-events').html("");
+    localStorage.removeItem('favouriteEvents');
 });
 
 // event listener for the searchBtn
