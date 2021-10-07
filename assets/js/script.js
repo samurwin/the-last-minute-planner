@@ -14,7 +14,6 @@ $('#searchBtn').on('click', function(event) {
     event.preventDefault();
     var cityName = document.querySelector("input[name='city-name']").value;
     var date = document.querySelector("input[name='date']").value;
-    console.log(cityName, date);
     // displayTitle(date, cityName);
     // call the ticket master api using the date and cityName (fetch)
     fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&date=' + date +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
@@ -31,13 +30,13 @@ $('#searchBtn').on('click', function(event) {
         return response.json();
     })
     .then(function(response) {
-        fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&date=' + date +'&units=metric&appid=460baac12caacdeca58e7bae8f1299bc')
+        fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon +'&units=metric&appid=460baac12caacdeca58e7bae8f1299bc')
         .then(function(weather) {
             return weather.json();
         })
         .then(function(weather) {
             $('#forecast').empty();
-            displayWeather(weather, cityName);
+            displayWeather(weather, cityName, date);
         })
     })
 });
@@ -93,21 +92,73 @@ var createEvent = function(data, i) {
 
 
 // create a function to display the weather
-var displayWeather = function(weather, cityName) {
+var displayWeather = function(weather, cityName, date) {
     var forecastContainerEl = document.getElementById('forecast');
 
+    if (moment().format('MM/DD/YYYY') === date){
+        var cityEl = $('<h5></h5>')
+        .text(cityName)
+        .addClass('m-0')
+        var conditionsEl = $('<img>')
+        .attr('src', 'http://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
+        .attr('alt', weather.current.weather[0].main);
+        var tempEl = $('<p></p>')
+        .text('Temp: ' + weather.current.temp + '°C');
+    
+        $(forecastContainerEl).append(cityEl, conditionsEl, tempEl);
+    } else {
+        switch (date) {
+            case moment().add(1, 'd').format('MM/DD/YYYY'):
+                i = 0;
+                console.log(i);
+                break;
+            case moment().add(2, 'd').format('MM/DD/YYYY'):
+                i = 1;
+                console.log(i);
+                break;
+            case moment().add(3, 'd').format('MM/DD/YYYY'):
+                i = 2;
+                console.log(i);
+                break;
+            case moment().add(4, 'd').format('MM/DD/YYYY'):
+                i = 3;
+                console.log(i);
+                break;
+            case moment().add(5, 'd').format('MM/DD/YYYY'):
+                i = 4;
+                console.log(i);
+                break;
+            case moment().add(6, 'd').format('MM/DD/YYYY'):
+                i = 5;
+                console.log(i);
+                break;
+            case moment().add(7, 'd').format('MM/DD/YYYY'):
+                i = 6;
+                console.log(i);
+                break;
+            default:
+                var messageEl = $('<p></p>')
+                .text('No Weather Forecast for this day. Weather Forecast is available for up to 7 days in the future.')
+                $(forecastContainerEl).append(messageEl);
+        }
+
+        futureWeather(weather, cityName, i);
+    }
+
+}
+
+var futureWeather = function(weather, cityName, i) {
     var cityEl = $('<h5></h5>')
     .text(cityName)
     .addClass('m-0')
     var conditionsEl = $('<img>')
-    .attr('src', 'http://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
-    .attr('alt', weather.current.weather[0].main);
+    .attr('src', 'http://openweathermap.org/img/wn/' + weather.daily[i].weather[0].icon + '@2x.png')
+    .attr('alt', weather.daily[i].weather[0].main);
     var tempEl = $('<p></p>')
-    .text('Temp: ' + weather.current.temp + '°C');
+    .text('Temp: ' + weather.daily[i].temp.day + '°C');
 
-    $(forecastContainerEl).append(cityEl, conditionsEl, tempEl);
+    $('#forecast').append(cityEl, conditionsEl, tempEl);
 }
-
 
 $('#results').on('click',".save", function(event){
     var eventName = $(this).parent().find('.event').text();
