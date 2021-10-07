@@ -25,9 +25,11 @@ $('#searchBtn').on('click', function(event) {
     event.preventDefault();
     var cityName = document.querySelector("input[name='city-name']").value;
     var date = document.querySelector("input[name='date']").value;
+
     console.log(cityName, date);
     // call a function displayTitle(date, cityName)
     displayTitle(date, cityName);
+
     // call the ticket master api using the date and cityName (fetch)
     fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&date=' + date +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
     .then(function(data) {
@@ -43,14 +45,13 @@ $('#searchBtn').on('click', function(event) {
         return response.json();
     })
     .then(function(response) {
-        fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&date=' + date +'&units=metric&appid=460baac12caacdeca58e7bae8f1299bc')
+        fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon +'&units=metric&appid=460baac12caacdeca58e7bae8f1299bc')
         .then(function(weather) {
             return weather.json();
         })
-        // then call displayWeather(data)
         .then(function(weather) {
-            // displayWeather(weather);
-            console.log(weather);
+            $('#forecast').empty();
+            displayWeather(weather, cityName, date);
         })
     })
 });
@@ -71,7 +72,6 @@ var displayEvents = function(data) {
 };
 
 var createEvent = function(data, i) {
-    console.log(data, i);
     var currentEvent = data._embedded.events[i];
 
     var eventContainerEl = $('<div></div>')
@@ -84,7 +84,7 @@ var createEvent = function(data, i) {
     .addClass('m-0 event');
     var favouritesLinkEl = $('<button></button>')
     .text("Add To Favourites")
-    .addClass('text-decoration-underline save');
+    .addClass('btn btn-outline-secondary save');
 
     $(eventTitleContainerEl).append(eventTitleEl, favouritesLinkEl);
 
@@ -107,33 +107,73 @@ var createEvent = function(data, i) {
 
 
 // create a function to display the weather
-    // create a variable for the #forecast container
+var displayWeather = function(weather, cityName, date) {
+    var forecastContainerEl = document.getElementById('forecast');
 
-    // create a <h4> for the City Name
-    // text will equal cityName
-    // create an <img> for the weather condidtions (icon)
-    // attr src="url"
-    // attr alt="data.main"
-    // add classes
-    // create a <p></p> for the temperature
-    // text will equal data.temp
+    if (moment().format('MM/DD/YYYY') === date){
+        var cityEl = $('<h5></h5>')
+        .text(cityName)
+        .addClass('m-0')
+        var conditionsEl = $('<img>')
+        .attr('src', 'http://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
+        .attr('alt', weather.current.weather[0].main);
+        var tempEl = $('<p></p>')
+        .text('Temp: ' + weather.current.temp + '°C');
+    
+        $(forecastContainerEl).append(cityEl, conditionsEl, tempEl);
+    } else {
+        switch (date) {
+            case moment().add(1, 'd').format('MM/DD/YYYY'):
+                i = 0;
+                console.log(i);
+                break;
+            case moment().add(2, 'd').format('MM/DD/YYYY'):
+                i = 1;
+                console.log(i);
+                break;
+            case moment().add(3, 'd').format('MM/DD/YYYY'):
+                i = 2;
+                console.log(i);
+                break;
+            case moment().add(4, 'd').format('MM/DD/YYYY'):
+                i = 3;
+                console.log(i);
+                break;
+            case moment().add(5, 'd').format('MM/DD/YYYY'):
+                i = 4;
+                console.log(i);
+                break;
+            case moment().add(6, 'd').format('MM/DD/YYYY'):
+                i = 5;
+                console.log(i);
+                break;
+            case moment().add(7, 'd').format('MM/DD/YYYY'):
+                i = 6;
+                console.log(i);
+                break;
+            default:
+                var messageEl = $('<p></p>')
+                .text('No Weather Forecast for this day. Weather Forecast is available for up to 7 days in the future.')
+                $(forecastContainerEl).append(messageEl);
+        }
 
-    // append cityName, icon, temp to #forecast container
+        futureWeather(weather, cityName, i);
+    }
 
-// event listener for #results container for element with the class .addToFavourites
+}
 
+var futureWeather = function(weather, cityName, i) {
+    var cityEl = $('<h5></h5>')
+    .text(cityName)
+    .addClass('m-0')
+    var conditionsEl = $('<img>')
+    .attr('src', 'http://openweathermap.org/img/wn/' + weather.daily[i].weather[0].icon + '@2x.png')
+    .attr('alt', weather.daily[i].weather[0].main);
+    var tempEl = $('<p></p>')
+    .text('Temp: ' + weather.daily[i].temp.day + '°C');
 
-
-
-    // create variable for the eventName
-   
-    // create variable for the startTime
-   
-    // create an empty array to hold events (as a global variable at the top of the code)
-    // create an object to hold a event {name: eventName, time: startTime}
-   
-     
-//document.querySelector('#favouritesLinkEl').addEventlistner('click', saveData);
+    $('#forecast').append(cityEl, conditionsEl, tempEl);
+}
 
 $('#results').on('click',".save", function(event){
     var eventName = $(this).parent().find('.event').text();
@@ -160,7 +200,7 @@ var createShowFavourites = function(i, toGetEventName) {
     var favouriteCardEl = $('<div></div>')
     .addClass('col-11 border border-dark p-2 m-2')
 
-    var eventNameEl = $('<h4></h4>')
+    var eventNameEl = $('<h6></h6>')
     .text(toGetEventName[i].name)
 
     var timeEl = $('<p></p>')
