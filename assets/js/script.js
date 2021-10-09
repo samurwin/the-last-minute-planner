@@ -25,6 +25,7 @@ $('#searchBtn').on('click', function(event) {
     event.preventDefault();
     var cityName = document.querySelector("input[name='city-name']").value;
     var date = document.querySelector("input[name='date']").value;
+    var category = document.querySelector(".search-category").value;
     var dayBefore = moment(date, 'MM/DD/YYYY').subtract(1,'d').format('YYYY-MM-DD');
     var dayAfter = moment(date, 'MM/DD/YYYY').add(1, 'd').format('YYYY-MM-DD');
     
@@ -32,7 +33,7 @@ $('#searchBtn').on('click', function(event) {
     displayTitle(date, cityName);
 
     // call the ticket master api using the date and cityName (fetch)
-    fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&startEndDateTime=' + dayBefore + 'T00:00:00Z,' + dayAfter + 'T00:00:00Z' +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
+    fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&startEndDateTime=' + dayBefore + 'T00:00:00Z,' + dayAfter + 'T00:00:00Z&classificationName=' + category + '&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
     .then(function(data) {
         return data.json();
     })
