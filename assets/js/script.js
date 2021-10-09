@@ -11,7 +11,7 @@ $('#pick-date').datepicker( {
 // Function to display city name and date
 function displayTitle(dt, city) {
     $('#event_name').text(city + " " + dt);
-}
+};
 
 // Function to clear favorites
 $('#clear_fav').click(function() {
@@ -25,6 +25,7 @@ $('#searchBtn').on('click', function(event) {
     event.preventDefault();
     var cityName = document.querySelector("input[name='city-name']").value;
     var date = document.querySelector("input[name='date']").value;
+    var category = document.querySelector(".search-category").value;
     var dayBefore = moment(date, 'MM/DD/YYYY').subtract(1,'d').format('YYYY-MM-DD');
     var dayAfter = moment(date, 'MM/DD/YYYY').add(1, 'd').format('YYYY-MM-DD');
     
@@ -32,7 +33,7 @@ $('#searchBtn').on('click', function(event) {
     displayTitle(date, cityName);
 
     // call the ticket master api using the date and cityName (fetch)
-    fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&startEndDateTime=' + dayBefore + 'T00:00:00Z,' + dayAfter + 'T00:00:00Z' +'&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
+    fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=10&city=' + cityName + '&startEndDateTime=' + dayBefore + 'T00:00:00Z,' + dayAfter + 'T00:00:00Z&classificationName=' + category + '&apikey=GLE8iclmKIizOPTZtUoLOFpHe2fHejvM')
     .then(function(data) {
         return data.json();
     })
@@ -56,10 +57,6 @@ $('#searchBtn').on('click', function(event) {
         })
     })
 });
-
-// create a function to display the title
-    // use querySelector to get the span element 
-    // text of the span will equal the cityName + date
 
 // create a function to display the events on the page
 var displayEvents = function(data) {
@@ -116,7 +113,7 @@ var displayWeather = function(weather, cityName, date) {
         .text(cityName)
         .addClass('m-0')
         var conditionsEl = $('<img>')
-        .attr('src', 'http://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
+        .attr('src', 'https://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
         .attr('alt', weather.current.weather[0].main);
         var tempEl = $('<p></p>')
         .text('Temp: ' + weather.current.temp + '°C');
@@ -126,31 +123,24 @@ var displayWeather = function(weather, cityName, date) {
         switch (date) {
             case moment().add(1, 'd').format('MM/DD/YYYY'):
                 i = 0;
-                console.log(i);
                 break;
             case moment().add(2, 'd').format('MM/DD/YYYY'):
                 i = 1;
-                console.log(i);
                 break;
             case moment().add(3, 'd').format('MM/DD/YYYY'):
                 i = 2;
-                console.log(i);
                 break;
             case moment().add(4, 'd').format('MM/DD/YYYY'):
                 i = 3;
-                console.log(i);
                 break;
             case moment().add(5, 'd').format('MM/DD/YYYY'):
                 i = 4;
-                console.log(i);
                 break;
             case moment().add(6, 'd').format('MM/DD/YYYY'):
                 i = 5;
-                console.log(i);
                 break;
             case moment().add(7, 'd').format('MM/DD/YYYY'):
                 i = 6;
-                console.log(i);
                 break;
             default:
                 var messageEl = $('<p></p>')
@@ -161,7 +151,7 @@ var displayWeather = function(weather, cityName, date) {
         futureWeather(weather, cityName, i);
     }
 
-}
+};
 
 var futureWeather = function(weather, cityName, i) {
     var cityEl = $('<h5></h5>')
@@ -174,7 +164,7 @@ var futureWeather = function(weather, cityName, i) {
     .text('Temp: ' + weather.daily[i].temp.day + '°C');
 
     $('#forecast').append(cityEl, conditionsEl, tempEl);
-}
+};
 
 $('#results').on('click',".save", function(event){
     var eventName = $(this).parent().find('.event').text();
@@ -185,7 +175,7 @@ $('#results').on('click',".save", function(event){
     
     localStorage.setItem('favouriteEvents', JSON.stringify(saveData));
     displayFavourites();
-})
+});
 
 var displayFavourites = function(){
     var toGetEventName = JSON.parse( localStorage.getItem('favouriteEvents'))
@@ -194,7 +184,7 @@ var displayFavourites = function(){
     for (i = 0; i < toGetEventName.length; i ++) {
         createShowFavourites(i, toGetEventName);
     }
-}
+};
 
 var createShowFavourites = function(i, toGetEventName) {
     console.log(i);
@@ -208,14 +198,8 @@ var createShowFavourites = function(i, toGetEventName) {
     .text(toGetEventName[i].time)
     $(favouriteCardEl).append(eventNameEl, timeEl );
     $('#favourite-events').append(favouriteCardEl);
-}
+};
+
+
+
 displayFavourites();   
-
-// add event listener for .clearLink
-// a function to clear the favourites card and clear the local storage
-    // create a variable for #favourite-events container using query selector
-    // clear innerHTML of the #favourite-events container
-
-    // localStorage.clear() - to clear the favourite events from the local storage
-
-  
