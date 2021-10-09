@@ -27,6 +27,20 @@
                     <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 rounded">
                     <label for="date" class="p-2 form-label">Date</label>
                     <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2" id="pick-date">
+                    <div id="dropdown-container">
+                        <select name="filter-search" class="search-category form-control m-2">
+                            <option value="" disabled selected>Pick a category</option>
+                            <option value="">All</option>
+                            <option value="Arts & Theatre">Arts & Theatre</option> 
+                            <option value="Comedy">Comedy</option>
+                            <option value="Family">Family</option>
+                            <option value="Film">Film</option>
+                            <option value="Music">Music</option>
+                            <option value="Misc">Misc</option>
+                            <option value="Sports">Sports</option>
+                        </select>
+                    </div>
+
                     <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
                 </div>
             </form>
