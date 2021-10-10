@@ -6,3 +6,47 @@ header {
     font-size: 18px;
     font-weight: bold;
 }
+@media (max-width: 576px) {
+    header{
+        text-align: center;
+    }
+
+    .event-in{
+        text-align: center;
+    }
+
+    .city-name{
+        margin-bottom: 5px;
+    }
+
+    .date{
+        margin-top: 5px;
+    }
+
+    .event-text{
+        text-align: center;
+    }
+
+   .event{
+       display:unset;
+       justify-content:unset;
+       text-align: center;
+     
+       
+    }
+    
+    .buttons{
+        width: 40%;
+    }
+
+    .fav-clr-btn{
+        justify-content: space-evenly;
+        text-align: center;
+    }
+
+    .fav-dis{
+        text-align: center;
+        padding-left: 15px;
+    }
+
+ }
