@@ -24,7 +24,7 @@ h4 {
 
 .h6 {
     font-weight: 400;
-    font-size: 0.75em;
+    font-size: 0.9em;
     color: gray;
 
 }
@@ -68,3 +68,19 @@ h4 {
     border-color: rebeccapurple;
 }
 
+@media screen and (max-width: 768px) {
+    .form-item {
+        flex-wrap: nowrap;
+    }
+    .card-title {
+        font-size: 1.2rem;
+    }
+    .save {
+        font-size: small;
+        margin-left: 2px;
+    }
+    .event {
+        font-size: 1.2rem;
+    }
+
+}

@@ -196,6 +196,7 @@ var createShowFavourites = function(i, toGetEventName) {
 
     var timeEl = $('<p></p>')
     .text(toGetEventName[i].time)
+    .addClass('mb-0')
     $(favouriteCardEl).append(eventNameEl, timeEl );
     $('#favourite-events').append(favouriteCardEl);
 };
