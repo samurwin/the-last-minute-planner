@@ -228,7 +228,7 @@ var displayFav = function(){
 var createFavourite = function(i, toGetEventName){
     console.log(toGetEventName);
     var cardEl = $('<div></div>')
-    .addClass('col-11 border border-dark p-2 m-2')
+    .addClass('col-11 border border-dark p-2 m-2 cardEl')
     .text(toGetEventName[i].name+  ":" + "  " +  toGetEventName[i].time)
    $('#display-btn').append(cardEl);
 } 

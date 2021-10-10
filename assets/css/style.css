@@ -1,11 +1,47 @@
+body {
+    background-color: #aaaaaa;
+}
+
 header {
     border-bottom: 1px solid gray;
+    background-color: black;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    padding: 20px;
+    background-image: url('../img/bg.jpg');
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.3em;
+    font-weight: 400;
+    color: purple;
+}
+
+.h6 {
+    font-weight: 400;
+    font-size: 0.75em;
+    color: gray;
+
+}
+
+.search {
+    background-color: #1a1a1a;
+    border: 0.4px solid #1a1a1a;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
 }
 
 .form-label {
     font-size: 18px;
     font-weight: bold;
 }
+
 @media (max-width: 576px) {
     header{
         text-align: center;
@@ -37,8 +73,8 @@ header {
     
     .buttons{
         width: 40%;
-        background-color: gray;
-        color: black;
+        background-color: purple;
+        color: white;
     }
 
     .fav-clr-btn{
@@ -50,6 +86,36 @@ header {
     .fav-dis{
         text-align: center;
         padding-left: 15px;
+
+    }
+    .cardEl{
+        background-color: white;
     }
 
  }
+
+.search-bar {
+    color: black;
+    background-color: gray;
+    font-weight: 200;
+    /* border: 0.4px solid white; */
+    border-radius: 5px;
+}
+
+.search-category{
+    width: auto;
+}
+
+.mt-2 {
+    color: black;
+}
+
+.btn-primary{
+    background-color: purple;
+    border-color: purple;
+}
+  
+.btn-primary:focus, .btn-primary:hover{
+    background-color: rebeccapurple;
+    border-color: rebeccapurple;
+}
