@@ -3,6 +3,7 @@
 ## Purpose
 A deployed website where you can search for events in a specific city, on a specific date. Filter your search by category (Comedy, Sports etc.) Check the weather for the city/date you are searching for, and add events to your favourites to view later!
 
+![Screenshot of Webpage](./assets/img/screen-shot.png)
 
 ## Built With
 * HTML
