@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header class="p-3">
+    <header class="p-4">
         <h2>The Last Minute Planner</h2>
         <h4>Search For Events Near You!</h4>
         <div class="search">
@@ -26,24 +26,29 @@
             </p>
             <div class="search-bar">
                 <form>
-                    <div class="form-inline m-3 align-items-center justify-content-start">
-                        <label for="city-name" class="p-2 form-label">City</label>
-                        <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 rounded">
-                        <label for="date" class="p-2 form-label">Date</label>
-                        <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2" id="pick-date">
-                        <label for="filter-search" class="p-2 form-label">Category</label>
-                        <div id="dropdown-container">
-                            <select name="filter-search" class="search-category form-control p-2">
-                                <option value="" disabled selected>Pick a category</option>
-                                <option value="">All</option>
-                                <option value="Arts & Theatre">Arts & Theatre</option> 
-                                <option value="Comedy">Comedy</option>
-                                <option value="Film">Film</option>
-                                <option value="Music">Music</option>
-                                <option value="Sports">Sports</option>
-                            </select>
+                    <div class="form-inline m-3 align-items-center justify-content-start flex-wrap">
+                        <div class="row m-1 form-item">
+                            <label for="city-name" class="p-2 form-label">City</label>
+                            <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 rounded">
                         </div>
-
+                        <div class="row m-1 form-item">
+                            <label for="date" class="p-2 form-label">Date</label>
+                            <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2" id="pick-date">
+                        </div>
+                        <div class="row m-1 form-item">
+                            <label for="filter-search" class="p-2 form-label">Category</label>
+                            <div id="dropdown-container">
+                                <select name="filter-search" class="search-category form-control p-2">
+                                    <option value="" disabled selected>Pick a category</option>
+                                    <option value="">All</option>
+                                    <option value="Arts & Theatre">Arts & Theatre</option> 
+                                    <option value="Comedy">Comedy</option>
+                                    <option value="Film">Film</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Sports">Sports</option>
+                                </select>
+                            </div>
+                        </div>
                         <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
                     </div>
                 </form>
@@ -55,21 +60,21 @@
 
     <main class="container col-12" id="container">
         <div class="row col-12" id="">
-            <div class="col-9" id="search-result">
+            <div class="col-xl-9 col-md-8 col-sm-8" id="search-result">
                 <h2 class="mt-2">Events in <span id="event_name"></span></h2>
 
                 <div id="results" class="d-flex flex-column justify-content-center align-items-around"></div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-md-4 col-sm-4">
                 <div class="row card mt-3 p-4">
-                    <h3>Weather Forcast in:</h3>
+                    <h3 class="card-title">Weather Forcast in:</h3>
                     <div id="forecast">
 
                     </div>
                 </div>
                 <div class="row card mt-3">
                     <div class="row justify-content-between align-items-center p-4">
-                        <h3>Favourite Events:</h3>
+                        <h3 class="card-title">Favourite Events:</h3>
                         <button type="button" class="btn btn-link" id="clear_fav">Clear</button>
                     </div>
                     <div id="favourite-events">
