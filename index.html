@@ -16,11 +16,11 @@
 </head>
 
 <body>
-    <header class="p-3">
+    <header class="p-3 header">
         <h2>The Last Minute Planner</h2>
         <h4>Search For Events Near You!</h4>
         <div class="search">
-            <p class="h6">
+        <p class="h6 d-none d-lg-block">
                 Use the form below to find events in a specified City. Find events for today or for a day in future! <br>
                 Use the weather forecast to decide weather an indoor or outdoor event is the best choice.
             </p>
@@ -43,43 +43,49 @@
                                 <option value="Sports">Sports</option>
                             </select>
                         </div>
-
                         <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
                     </div>
                 </form>
             </div>
         </div>
     </header>
-    
 
+   <main class="container-fluid col-lg-12 col-12 flex-column justify-content-center align-items-around" id="container">
+        <div class="row col-lg-12 col-12" id="">
+            <div class="col-lg-9 col-12 order-xs-2 " id="search-result">
+                <h2 class="mt-2 col-lg-9 col-12 event-in">Events in <span id="event_name"></span></h2>
 
-    <main class="container col-12" id="container">
-        <div class="row col-12" id="">
-            <div class="col-9" id="search-result">
-                <h2 class="mt-2">Events in <span id="event_name"></span></h2>
-
-                <div id="results" class="d-flex flex-column justify-content-center align-items-around"></div>
+                <div id="results" class="d-flex flex-column justify-content-center align-items-around col-12"></div>
             </div>
-            <div class="col-3">
-                <div class="row card mt-3 p-4">
-                    <h3>Weather Forcast in:</h3>
+            <div class="col-lg-3 col-12 " id="">
+                <div class="col-lg-12 col-12 card mt-3 p-4 order-xs-1 weather-card ">
+                    <h3 class="d-none d-lg-block">Weather Forcast in:</h3>
+                    <h3 class="d-none d-sm-none d-block">Weather:</h3>
                     <div id="forecast">
 
                     </div>
                 </div>
-                <div class="row card mt-3">
-                    <div class="row justify-content-between align-items-center p-4">
+               
+                <div id="favourite-events" class=" col-lg-12 col-12 card mt-3 p-4 d-none d-lg-block">
+                    <div class="row justify-content-between align-items-center ">
                         <h3>Favourite Events:</h3>
                         <button type="button" class="btn btn-link" id="clear_fav">Clear</button>
                     </div>
-                    <div id="favourite-events">
-
+                </div>
+                <div id="favourite-events1" class="col-lg-12 col-12 card mt-3 p-4 d-sm-none d-block order-xs-2">
+                    <div class="fav-clr-btn">
+                        <button class=" col-5 btn btn-outline-secondary buttons  save" id="drop-down" type="button" >
+                            Favourites
+                        </button>
+                        <button class="col-5 btn btn-outline-secondary buttons " id="clr-btn" type="button" >
+                            clear
+                        </button>
                     </div>
+                    <div class=" row justify-content-between align-items-center fav-dis" id="display-btn"></div>  
                 </div>
             </div>
         </div>
     </main>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

@@ -76,13 +76,13 @@ var createEvent = function(data, i) {
     .addClass('col-11 border border-dark p-2 m-2 event-text');
 
     var eventTitleContainerEl = $('<div></div>')
-    .addClass('d-flex flex-row align-items-center justify-content-between');
+    .addClass('d-flex flex-row  justify-content-between event-titles');
     var eventTitleEl = $('<h5></h5>')
     .text(currentEvent.name)
     .addClass('m-0 event');
     var favouritesLinkEl = $('<button></button>')
     .text("Add To Favourites")
-    .addClass('btn btn-outline-secondary save');
+    .addClass('btn btn-outline-secondary save d-none d-lg-block');
 
     $(eventTitleContainerEl).append(eventTitleEl, favouritesLinkEl);
 
@@ -97,9 +97,20 @@ var createEvent = function(data, i) {
     .addClass('font-weight-light m-0 time');
     var moreInfoEl = $('<a></a>')
     .text("More Info")
+    .addClass('d-none d-lg-block')
     .attr('href', currentEvent.url)
+    var favouritesLinkEl1 = $('<button></button>')
+    .text("Add To Favourites")
+    .addClass('btn btn-outline-secondary buttons  save d-sm-none d-block float-left');
+    var moreInfoEl1 = $('<button></button>')
+    .text("More Info")
+    .addClass('btn btn-outline-secondary buttons float-right d-sm-none d-block')
 
-    $(eventContainerEl).append(eventTitleContainerEl, genreEl, venueEl, startTimeEl, moreInfoEl);
+    $(moreInfoEl1).on('click', function(){
+        window.location = currentEvent.url;
+    })
+
+    $(eventContainerEl).append(eventTitleContainerEl, genreEl, venueEl, startTimeEl, moreInfoEl, favouritesLinkEl1, moreInfoEl1);
     $('#results').append(eventContainerEl);
 };
 
@@ -111,13 +122,13 @@ var displayWeather = function(weather, cityName, date) {
     if (moment().format('MM/DD/YYYY') === date){
         var cityEl = $('<h5></h5>')
         .text(cityName)
-        .addClass('m-0')
+        .addClass('m-0 ')
         var conditionsEl = $('<img>')
         .attr('src', 'https://openweathermap.org/img/wn/' + weather.current.weather[0].icon + '@2x.png')
         .attr('alt', weather.current.weather[0].main);
         var tempEl = $('<p></p>')
         .text('Temp: ' + weather.current.temp + '°C');
-    
+
         $(forecastContainerEl).append(cityEl, conditionsEl, tempEl);
     } else {
         switch (date) {
@@ -187,7 +198,7 @@ var displayFavourites = function(){
 };
 
 var createShowFavourites = function(i, toGetEventName) {
-    console.log(i);
+    //console.log(i);
     var favouriteCardEl = $('<div></div>')
     .addClass('col-11 border border-dark p-2 m-2')
 
@@ -201,5 +212,33 @@ var createShowFavourites = function(i, toGetEventName) {
 };
 
 
+$('#drop-down').on('click', function(){
+    displayFav();
+})
 
+var displayFav = function(){
+    var toGetEventName = JSON.parse( localStorage.getItem('favouriteEvents'))
+    //console.log(toGetEventName); 
+            
+    for (i = 0; i < toGetEventName.length; i ++) {
+        createFavourite(i, toGetEventName);
+    }
+}
+
+var createFavourite = function(i, toGetEventName){
+    console.log(toGetEventName);
+    var cardEl = $('<div></div>')
+    .addClass('col-11 border border-dark p-2 m-2 cardEl')
+    .text(toGetEventName[i].name+  ":" + "  " +  toGetEventName[i].time)
+   $('#display-btn').append(cardEl);
+} 
+
+
+$("#clr-btn").on("click",function() {
+    
+    $('#display-btn').html("");
+    localStorage.removeItem('favouriteEvents');
+})
+
+displayFav();
 displayFavourites();   
