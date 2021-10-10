@@ -1,5 +1,5 @@
 body {
-    background-color: #aaaaaa;
+    background-color: #F6F4F4;
 }
 
 header {
@@ -24,8 +24,8 @@ h4 {
 
 .h6 {
     font-weight: 400;
-    font-size: 0.75em;
-    color: gray;
+    font-size: 0.9em;
+    color: #F6F4F4;
 
 }
 
@@ -44,7 +44,7 @@ h4 {
 
 .search-bar {
     color: black;
-    background-color: gray;
+    background-color: #F6F4F4;
     font-weight: 200;
     /* border: 0.4px solid white; */
     border-radius: 5px;
@@ -68,3 +68,6 @@ h4 {
     border-color: rebeccapurple;
 }
 
+.event-text {
+    background-color: #ffffff;
+}
