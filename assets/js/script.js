@@ -73,7 +73,7 @@ var createEvent = function(data, i) {
     var currentEvent = data._embedded.events[i];
 
     var eventContainerEl = $('<div></div>')
-    .addClass('col-11 border border-dark p-2 m-2 event-text');
+    .addClass('col-11 border rounded p-2 m-2 event-text');
 
     var eventTitleContainerEl = $('<div></div>')
     .addClass('d-flex flex-row align-items-center justify-content-between');
