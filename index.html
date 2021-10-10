@@ -9,6 +9,9 @@
     <title>The Last Minute Planner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
@@ -16,38 +19,38 @@
     <header class="p-3 header">
         <h2>The Last Minute Planner</h2>
         <h4>Search For Events Near You!</h4>
+        <div class="search">
         <p class="h6 d-none d-lg-block">
-            Use the form below to find events in a specified City. Find events for today or for a day in future! <br>
-            Use the weather forecast to decide weather an indoor or outdoor event is the best choice.
-        </p>
-        <div>
-            <form>
-                <div class="form-inline m-3 align-items-center justify-content-start ">
-                    <label for="city-name" class="p-2 form-label d-none d-lg-block">City</label>
-                    <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 city-name">
-                    <label for="date" class="p-2 form-label d-none d-lg-block">Date</label>
-                    <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2 date" id="pick-date">
-                    <div id="dropdown-container" class="d-none d-lg-block">
-                        <select name="filter-search" class="search-category form-control m-2 ">
-                            <option value="" disabled selected>Pick a category</option>
-                            <option value="">All</option>
-                            <option value="Arts & Theatre">Arts & Theatre</option> 
-                            <option value="Comedy">Comedy</option>
-                            <option value="Film">Film</option>
-                            <option value="Music">Music</option>
-                            <option value="Sports">Sports</option>
-                        </select>
+                Use the form below to find events in a specified City. Find events for today or for a day in future! <br>
+                Use the weather forecast to decide weather an indoor or outdoor event is the best choice.
+            </p>
+            <div class="search-bar">
+                <form>
+                    <div class="form-inline m-3 align-items-center justify-content-start">
+                        <label for="city-name" class="p-2 form-label">City</label>
+                        <input type="text" name="city-name" placeholder="Enter City Name" class="form-control p-2 rounded">
+                        <label for="date" class="p-2 form-label">Date</label>
+                        <input type="text" name="date" placeholder="MM/DD/YYYY" class="form-control rounded p-2" id="pick-date">
+                        <label for="filter-search" class="p-2 form-label">Category</label>
+                        <div id="dropdown-container">
+                            <select name="filter-search" class="search-category form-control p-2">
+                                <option value="" disabled selected>Pick a category</option>
+                                <option value="">All</option>
+                                <option value="Arts & Theatre">Arts & Theatre</option> 
+                                <option value="Comedy">Comedy</option>
+                                <option value="Film">Film</option>
+                                <option value="Music">Music</option>
+                                <option value="Sports">Sports</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
                     </div>
-
-                    <button type="submit" id="searchBtn" class="btn btn-primary m-2">Search</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </header>
-    
 
-
-    <main class="container-fluid col-lg-12 col-12 flex-column justify-content-center align-items-around" id="container">
+   <main class="container-fluid col-lg-12 col-12 flex-column justify-content-center align-items-around" id="container">
         <div class="row col-lg-12 col-12" id="">
             <div class="col-lg-9 col-12 order-xs-2 " id="search-result">
                 <h2 class="mt-2 col-lg-9 col-12 event-in">Events in <span id="event_name"></span></h2>
@@ -83,7 +86,6 @@
             </div>
         </div>
     </main>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
