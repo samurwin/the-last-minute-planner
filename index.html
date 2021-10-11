@@ -72,15 +72,13 @@
                         <button type="button" class="btn btn-link" id="clear_fav">Clear</button>
                     </div>
                 </div>
-                <div id="favourite-events1" class="col-lg-12 col-12 card mt-3 p-4 d-sm-none d-block order-xs-2">
-                    <div class="fav-clr-btn">
-                        <button class=" col-5 btn btn-outline-secondary buttons  save" id="drop-down" type="button" >
-                            Favourites
-                        </button>
-                        <button class="col-5 btn btn-outline-secondary buttons " id="clr-btn" type="button" >
-                            clear
-                        </button>
-                    </div>
+                <div id="favourite-events" class="col-lg-12 col-12 card mt-3 p-4 d-sm-none d-block order-xs-2">
+                    <label for="filter-search" class="p-2 form-label"></label>
+                        <div id="dropdown-container1" class="col-10">
+                            <select name="filter-favourites" class="search-category form-control col-10 p-2" id="drop-down" type="button">
+                                <option value="" disabled selected>Favourites:</option>
+                            </select>
+                        </div>
                     <div class=" row justify-content-between align-items-center fav-dis" id="display-btn"></div>  
                 </div>
             </div>

@@ -217,12 +217,18 @@ $('#drop-down').on('click', function(){
 })
 
 var displayFav = function(){
+    console.log(displayFav);
     var toGetEventName = JSON.parse( localStorage.getItem('favouriteEvents'))
     //console.log(toGetEventName); 
             
     for (i = 0; i < toGetEventName.length; i ++) {
         createFavourite(i, toGetEventName);
     }
+
+    var clearLinkEl = $('<buttons></buttons>')
+    .addClass('btn btn-link')
+    .text('Clear')
+    $('#dropdown-container1').append(clearLinkEl);
 }
 
 var createFavourite = function(i, toGetEventName){
@@ -231,14 +237,14 @@ var createFavourite = function(i, toGetEventName){
     .addClass('col-11 border border-dark p-2 m-2 cardEl')
     .text(toGetEventName[i].name+  ":" + "  " +  toGetEventName[i].time)
    $('#display-btn').append(cardEl);
+
+   
 } 
 
-
-$("#clr-btn").on("click",function() {
+$("#clearLinkEl").on("click",function() {
     
     $('#display-btn').html("");
     localStorage.removeItem('favouriteEvents');
 })
 
-displayFav();
 displayFavourites();   
