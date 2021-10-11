@@ -228,18 +228,18 @@ var displayFav = function(){
     var clearLinkEl = $('<buttons></buttons>')
     .addClass('btn btn-link btnEl')
     .text('Clear')
-    $('#dropdown-container1').append(clearLinkEl);
+    $('#clear').append(clearLinkEl);
 }
 
 var createFavourite = function(i, toGetEventName){
     console.log(toGetEventName);
     var cardEl = $('<div></div>')
-    .addClass('col-11 border border-dark p-2 m-2 cardEl')
+    .addClass('col-11 border border-dark p-2 m-3 cardEl')
     .text(toGetEventName[i].name+  ":" + "  " +  toGetEventName[i].time)
-   $('#clear').append(cardEl);
+    $('#display-btn').append(cardEl);
 } 
 
-$("#clearLinkEl").on("click",function() {
+$("#clear").on("click",function() {
     
     $('#display-btn').html("");
     localStorage.removeItem('favouriteEvents');

@@ -46,10 +46,9 @@ h4 {
     header{
         text-align: center;
     }
-
-    .event-in{
-        text-align: center;
-        justify-content: center;
+    
+    .search-btn{
+        margin: 0 auto;
     }
 
     .results{
@@ -84,12 +83,6 @@ h4 {
         color: white;
     }
 
-    .fav-clr-btn{
-        justify-content: space-evenly;
-        text-align: center;
-        padding-bottom: 20px;
-    }
-
     .fav-dis{
         text-align: center;
     }
@@ -99,6 +92,7 @@ h4 {
     
     .label{
         text-align: center;
+        justify-content: space-around;
     }
 
     .btnEl{
