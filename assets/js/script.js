@@ -235,7 +235,13 @@ var createFavourite = function(i, toGetEventName){
     console.log(toGetEventName);
     var cardEl = $('<div></div>')
     .addClass('col-11 border border-dark p-2 m-3 cardEl')
-    .text(toGetEventName[i].name+  ":" + "  " +  toGetEventName[i].time)
+
+    var favouriteNameEl = $('<h6></h6>')
+    .text(toGetEventName[i].name)
+
+    var favouriteTimeEl = $('<p></p>')
+    .text(toGetEventName[i].time)
+    $(cardEl).append(favouriteNameEl, favouriteTimeEl );
     $('#display-btn').append(cardEl);
 } 
 
