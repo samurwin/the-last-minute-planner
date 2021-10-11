@@ -226,7 +226,7 @@ var displayFav = function(){
     }
 
     var clearLinkEl = $('<buttons></buttons>')
-    .addClass('btn btn-link')
+    .addClass('btn btn-link btnEl')
     .text('Clear')
     $('#dropdown-container1').append(clearLinkEl);
 }
@@ -236,9 +236,7 @@ var createFavourite = function(i, toGetEventName){
     var cardEl = $('<div></div>')
     .addClass('col-11 border border-dark p-2 m-2 cardEl')
     .text(toGetEventName[i].name+  ":" + "  " +  toGetEventName[i].time)
-   $('#display-btn').append(cardEl);
-
-   
+   $('#clear').append(cardEl);
 } 
 
 $("#clearLinkEl").on("click",function() {

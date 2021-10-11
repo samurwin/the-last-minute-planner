@@ -55,10 +55,10 @@
             <div class="col-lg-9 col-12 order-xs-2 " id="search-result">
                 <h2 class="mt-2 col-lg-9 col-12 event-in">Events in <span id="event_name"></span></h2>
 
-                <div id="results" class="d-flex flex-column justify-content-center align-items-around col-12"></div>
+                <div id="results" class="d-flex flex-column justify-content-center align-items-around col-12 results"></div>
             </div>
-            <div class="col-lg-3 col-12 " id="">
-                <div class="col-lg-12 col-12 card mt-3 p-4 order-xs-1 weather-card ">
+            <div class="col-lg-3 col-12 container-2 " id="">
+                <div class="col-lg-12 col-12 card mt-3 p-4 order-xs-1  ">
                     <h3 class="d-none d-lg-block">Weather Forcast in:</h3>
                     <h3 class="d-none d-sm-none d-block">Weather:</h3>
                     <div id="forecast">
@@ -73,12 +73,12 @@
                     </div>
                 </div>
                 <div id="favourite-events" class="col-lg-12 col-12 card mt-3 p-4 d-sm-none d-block order-xs-2">
-                    <label for="filter-search" class="p-2 form-label"></label>
-                        <div id="dropdown-container1" class="col-10">
-                            <select name="filter-favourites" class="search-category form-control col-10 p-2" id="drop-down" type="button">
-                                <option value="" disabled selected>Favourites:</option>
-                            </select>
-                        </div>
+                    <div id="dropdown-container1" class="col-12 label">
+                        <select name="filter-favourites" class="search-category control col-10 p-2" id="drop-down" type="button">
+                            <option value="" disabled selected>Favourites:</option>
+                        </select>
+                        <div><span id="clear" class="clear"></span></div>
+                    </div>
                     <div class=" row justify-content-between align-items-center fav-dis" id="display-btn"></div>  
                 </div>
             </div>
