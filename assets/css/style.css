@@ -66,6 +66,20 @@ h4 {
     background-color: rebeccapurple;
     border-color: rebeccapurple;
 }
+
+.btn-outline-secondary{
+    background-color: white;
+    border-color: purple;
+    color: purple;
+}
+  
+.btn-outline-secondary:focus, .btn-outline-secondary:hover{
+    background-color: rebeccapurple;
+    border-color: rebeccapurple;
+    color: white;
+
+}
+
 .event-text {
     background-color: #ffffff;
 }
@@ -83,5 +97,21 @@ h4 {
     }
     .event {
         font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .form-item {
+        flex-wrap: nowrap;
+    }
+    .card-title {
+        font-size: 1.4rem;
+    }
+    .save {
+        font-size: small;
+        margin-left: 2px;
+    }
+    .event {
+        font-size: 1.4rem;
     }
 }
